@@ -1,4 +1,4 @@
-# 🖥️ Philippe's Home Lab — Lenovo ThinkCentre M710q Tiny
+# 🖥️ Philippe's Home Lab - Lenovo ThinkCentre M710q Tiny
 
 > A hands-on network security home lab built on a Lenovo M710q Tiny, designed to bridge theoretical knowledge (CompTIA Network+, Security+) with real-world practical skills in Linux, networking, containerization, security, and automation.
 
