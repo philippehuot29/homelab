@@ -49,7 +49,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 ### 🔄 Stage 1 — Linux Foundation
 **Goal:** Stable, headless-capable base system. Never need the display again after this.
 
-- [ ] Install Ubuntu Server 24.04 LTS via autoinstall (headless, no keyboard required)
+- [ ] Install Ubuntu Server 24.04 LTS
 - [ ] Configure static IP address
 - [ ] Enable and harden SSH (key-based auth, disable root login, disable password auth)
 - [ ] Basic user and firewall setup (UFW)
@@ -59,7 +59,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 2 — DNS & Ad Blocking (Pi-hole)
+### 🔄 Stage 2 — OpenDNS & Ad Blocking (Pi-hole)
 **Goal:** First live network service. Understand DNS resolution deeply.
 
 - [ ] Deploy Pi-hole in Docker
