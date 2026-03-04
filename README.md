@@ -23,8 +23,8 @@
 - **Storage:** M.2 NVMe (up to 2TB) + 2.5" SATA SSD + 2.5" HDD via expansion chassis simultaneously
 
 ### Planned Hardware Upgrades
-- [ ] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
-- [ ] Storage: Add M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
+- [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
+- [x] Storage: Add 256GB M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
 - [ ] RAM: Upgrade to 2x 16GB (→ 32GB) when VM workloads demand it
 
 ---
@@ -46,14 +46,14 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 1 — Linux Foundation
+### ✅ Stage 1 — Linux Foundation
 **Goal:** Stable, headless-capable base system. Never need the display again after this.
 
-- [ ] Install Ubuntu Server 24.04 LTS
-- [ ] Configure static IP address
-- [ ] Enable and harden SSH (key-based auth, disable root login, disable password auth)
-- [ ] Basic user and firewall setup (UFW)
-- [ ] Install Docker + Docker Compose
+- [x] Install Ubuntu Server 24.04 LTS
+- [x] Configure static IP address
+- [x] Enable and harden SSH (key-based auth, disable root login, disable password auth)
+- [x] Basic user and firewall setup (UFW)
+- [x] Install Docker + Docker Compose
 
 **Skills developed:** Linux CLI fundamentals, networking basics, SSH, UFW
 
@@ -62,10 +62,10 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 ### 🔄 Stage 2 — OpenDNS & Ad Blocking (Pi-hole)
 **Goal:** First live network service. Understand DNS resolution deeply.
 
-- [ ] Deploy Pi-hole in Docker
-- [ ] Configure as primary DNS resolver for home network
-- [ ] Set up custom blocklists
-- [ ] Explore Pi-hole query logs and statistics dashboard
+- [x] Deploy Pi-hole in Docker
+- [x] Configure as primary DNS resolver for home network
+- [x] Set up custom blocklists
+- [x] Explore Pi-hole query logs and statistics dashboard
 
 **Skills developed:** Docker basics (volumes, port mapping, networking), DNS, container lifecycle management
 
@@ -255,10 +255,10 @@ Estimated idle RAM footprint for full stack:
 ## Upgrade Path
 
 ```
-Current:  8GB RAM  |  128GB SATA SSD  |  No M.2
-Step 1:  16GB RAM  |  128GB SATA SSD  |  No M.2          (~30-55€)
-Step 2:  16GB RAM  |  128GB SATA SSD  |  500GB+ NVMe     (~40-60€)
-Step 3:  32GB RAM  |  128GB SATA SSD  |  500GB+ NVMe     (~45-80€ additional)
+Previously:  8GB RAM  |  128GB SATA SSD  |  No M.2       (~70€)
+Step 1:  16GB RAM  |  128GB SATA SSD  |  No M.2          (~30€)
+Step 2:  16GB RAM  |  128GB SATA SSD  |  256GB NVMe     (~27€)
+Step 3:  32GB RAM  |  128GB SATA SSD  |  256GB NVMe     (~120€ additional)
 ```
 
 ---
