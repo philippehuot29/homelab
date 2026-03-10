@@ -255,10 +255,10 @@ Estimated idle RAM footprint for full stack:
 ## Upgrade Path
 
 ```
-Previously:  8GB RAM  |  128GB SATA SSD  |  No M.2       (~70€)
-Step 1:  16GB RAM  |  128GB SATA SSD  |  No M.2          (~30€)
-Step 2:  16GB RAM  |  128GB SATA SSD  |  256GB NVMe     (~27€)
-Step 3:  32GB RAM  |  128GB SATA SSD  |  256GB NVMe     (~120€ additional)
+Previously:  8GB RAM  |  128GB SATA SSD  |  No M.2    
+Step 1:  16GB RAM  |  128GB SATA SSD  |  No M.2        
+Step 2:  16GB RAM  |  128GB SATA SSD  |  256GB NVMe  
+Step 3:  32GB RAM  |  128GB SATA SSD  |  256GB NVMe     
 ```
 
 ---
