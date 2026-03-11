@@ -10,8 +10,8 @@
 |-----------|------|
 | **Machine** | Lenovo ThinkCentre M710q Tiny |
 | **CPU** | Intel i5-6500T (4 cores, 2.5GHz, 35W TDP) — soldered, not upgradeable |
-| **RAM** | 8GB Samsung DDR4-2400 SO-DIMM (1x DIMM slot free — max 32GB) |
-| **Storage** | 128GB SATA SSD + M.2 slot (SATA/NVMe) available |
+| **RAM** | 16GB (2x8GB) Samsung/Hynix DDR4-2400 SO-DIMM CL17 |
+| **Storage** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) + 128GB SATA SSD (data/storage) |
 | **Network** | 1x Intel I219-LM Gigabit LAN |
 | **Expansion** | Lenovo Tiny optical bay chassis (adds 1x additional 2.5" SATA bay) |
 | **Ports** | 6x USB 3.1, 1x COM DB-9, 2x DisplayPort, 1x LAN |
@@ -40,48 +40,69 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 ## Roadmap & Lab Stages
 
 ### ✅ Stage 0 — Hardware Acquisition & Assessment
-- Sourced refurbished M710q Tiny
-- Verified internals: RAM rank (1Rx8), M.2 slot availability, expansion chassis
-- Documented maximum upgrade path
+- [x] Sourced refurbished M710q Tiny
+- [x] Verified internals: RAM rank (1Rx8), M.2 slot availability, expansion chassis
+- [x] Documented maximum upgrade path
+- [x] Upgrade RAM to 16GB (matched Hynix 1Rx8 DDR4-2400)
+- [x] Install 250GB NVMe M.2 SSD (Samsung 970 EVO Plus)
 
 ---
 
 ### ✅ Stage 1 — Linux Foundation
-**Goal:** Stable, headless-capable base system. Never need the display again after this.
+**Goal:** Install Ubuntu Server 24.04 LTS, harden SSH, configure firewall, install Docker.
 
-- [x] Install Ubuntu Server 24.04 LTS
+- [x] Install Ubuntu Server 24.04 LTS on NVMe
 - [x] Configure static IP address
-- [x] Enable and harden SSH (key-based auth, disable root login, disable password auth)
-- [x] Basic user and firewall setup (UFW)
+- [x] Enable and harden SSH (key-based auth, disable root login, MaxAuthTries 3)
+- [x] Configure Uncomplicated Firewall (UFW)(ports 22, 53, 80, 443, 51820)
 - [x] Install Docker + Docker Compose
+- [x] Install fail2ban (3-attempt ban)
+- [x] Create homelab directory structure ~/homelab/{docker,scripts,configs,backups,docs}
+- [x] Take Timeshift snapshot: Stage 0 baseline
 
-**Skills developed:** Linux CLI fundamentals, networking basics, SSH, UFW
+**Skills developed:** Linux CLI fundamentals, SSH hardening, UFW firewall, static IP configuration, Docker engine
+
+**Network+ relevance:** host configuration, basic security
+
+**Security+ relevance:** hardening, least privilege
 
 ---
 
-### 🔄 Stage 2 — OpenDNS & Ad Blocking (Pi-hole)
-**Goal:** First live network service. Understand DNS resolution deeply.
+### ✅ Stage 2 — OpenDNS & Ad Blocking (Pi-hole)
+**Goal:** First live network service. Deploy Pi-hole in Docker as primary DNS resolver. Configure OpenDNS upstream. Network-wide ad blocking.
 
-- [x] Deploy Pi-hole in Docker
+- [x] Disable systemd-resolved (port 53 conflict)
+- [x] Make /etc/resolv.conf immutable
+- [x] Configure /etc/docker/daemon.json (iptables: false)
+- [x] Deploy Pi-hole via Docker Compose
+- [x] Set upstream DNS to OpenDNS
 - [x] Configure as primary DNS resolver for home network
-- [x] Set up custom blocklists
 - [x] Explore Pi-hole query logs and statistics dashboard
+- [x] Configure custom blocklists (OISD Gold Standard List)
+- [x] Verify ad blocking on all devices
+- [x] Take Timeshift snapshot: Stage 2 complete
 
-**Skills developed:** Docker basics (volumes, port mapping, networking), DNS, container lifecycle management
 
-**Network+ relevance:** DNS resolution flow, recursive vs. authoritative resolvers
+**Skills developed:** Docker basics (volumes, port mapping, networking), DNS resolution flow, recursive vs authoritative resolvers, container lifecycle management
+
+**Network+ relevance:** DNS resolution flow, recursive resolvers
+
+**Security+ relevance:** DNS filtering, threat mitigation
 
 ---
 
-### 🔄 Stage 3 — VPN Server (WireGuard)
+### ✅ Stage 3 — VPN Server (WireGuard)
 **Goal:** Self-hosted VPN accessible from anywhere. Eliminate reliance on commercial VPN providers.
 
-- [ ] Install WireGuard (kernel module — no Docker needed)
-- [ ] Generate server and client key pairs
-- [ ] Configure peer tunnels for remote devices
-- [ ] Test connectivity from mobile and laptop externally
+- [x] Install WireGuard (kernel module — no Docker needed)
+- [x] Generate server and client key pairs
+- [x] Configure peer tunnels for remote devices
+- [x] Configure DuckDNS for dynamic IP tracking
+- [x] Test connectivity from mobile and laptop externally
+- [x] Take Timeshift snapshot: Stage 3 complete
 
-**Skills developed:** VPN fundamentals, asymmetric key cryptography, tunnel configuration, firewall rules
+
+**Skills developed:** VPN fundamentals, asymmetric key cryptography, tunnel configuration, firewall rules, NAT traversal
 
 **Security+ relevance:** Tunneling protocols, IPSec vs. WireGuard vs. OpenVPN comparison, encryption key management
 
