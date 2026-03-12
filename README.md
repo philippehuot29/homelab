@@ -9,7 +9,7 @@
 | Component | Spec |
 |-----------|------|
 | **Machine** | Lenovo ThinkCentre M710q Tiny |
-| **CPU** | Intel i5-6500T (4 cores, 2.5GHz, 35W TDP) |
+| **CPU** | Intel i5-6500T — 4 cores/4 threads, 2.5G/3.1G (Based/Max Freq GHz) , 6 MB cache, HD 530 Integrated Graphics |
 | **RAM** | 16GB (2x8GB) Samsung/Hynix DDR4-2400 SO-DIMM CL17 |
 | **Storage** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) + 128GB SATA SSD (data/storage) |
 | **Network** | 1x Intel I219-LM Gigabit LAN |
@@ -18,9 +18,12 @@
 | **Power** | Original Lenovo 65W adapter |
 
 ### Maximum Specs (Hardware Ceiling)
-- **RAM:** 32GB (2x 16GB DDR4 SO-DIMM) — DDR4-2400 or 3200MHz both compatible
-- **CPU:** i5-6500T — **cannot be upgraded** (soldered BGA)
-- **Storage:** M.2 NVMe (up to 2TB) + 2.5" SATA SSD + 2.5" HDD via expansion chassis simultaneously
+- **RAM:** 32GB (2x 16GB DDR4 SO-DIMM) — DDR4-2400Mhz
+- **CPU:** i5-6500T — upgradeable to Core i7-7700T
+- **Storage:**
+    - M.2 NVMe Solid State Drive (SSD) / PCIe NVMe, PCIe 3.0 x 4, 32Gb/s
+    - 2.5" Solid State Drive (SSD) / SATA 6.0Gb/s, 2.5"
+    - 2.5" HDD via expansion chassis simultaneously
 
 ### Planned Hardware Upgrades
 - [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
