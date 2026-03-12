@@ -9,7 +9,7 @@
 | Component | Spec |
 |-----------|------|
 | **Machine** | Lenovo ThinkCentre M710q Tiny |
-| **CPU** | Intel i5-6500T (4 cores, 2.5GHz, 35W TDP) — soldered, not upgradeable |
+| **CPU** | Intel i5-6500T (4 cores, 2.5GHz, 35W TDP) |
 | **RAM** | 16GB (2x8GB) Samsung/Hynix DDR4-2400 SO-DIMM CL17 |
 | **Storage** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) + 128GB SATA SSD (data/storage) |
 | **Network** | 1x Intel I219-LM Gigabit LAN |
