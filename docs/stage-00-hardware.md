@@ -56,4 +56,4 @@ Hardware identification, DDR4 rank matching, NVMe compatibility, server form-fac
 
 ---
 
-*[← Back to README](../README.md)*
+*[← Back to README](../README.md) | [→ Stage 1](stage-01-linux.md)*
