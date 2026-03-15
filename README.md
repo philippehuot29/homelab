@@ -19,7 +19,7 @@
 
 ### Maximum Specs (Hardware Ceiling)
 - **RAM:** 32GB (2x 16GB DDR4 SO-DIMM) — DDR4-2400Mhz
-- **CPU:** i5-6500T — upgradeable to Core i7-7700T
+- **CPU:** i5-6500T — upgradeable to Core i7-7700T — 4 cores/8 threads, 2.9GHz/3.8GHz (Based/Max Freq) , 8 MB cache, HD 630 Integrated Graphics
 - **Storage:**
     - M.2 NVMe Solid State Drive (SSD) / PCIe NVMe, PCIe 3.0 x 4, 32Gb/s
     - 2.5" Solid State Drive (SSD) / SATA 6.0Gb/s, 2.5"
@@ -28,6 +28,8 @@
 ### Planned Hardware Upgrades
 - [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
 - [x] Storage: Add 256GB M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
+- [ ] Managed switch Tp-Link TL-SG608E 8-Port Gigabit 
+- [ ] CPU: Upgrade to Intel i7-7700T
 - [ ] RAM: Upgrade to 2x 16GB (→ 32GB) when VM workloads demand it
 
 ---
@@ -111,12 +113,16 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 4 — Firewall Lab (pfSense/OPNsense — Learning Mode)
+### 🔄 Stage 4 — Firewall Lab (pfSense/OPNsense — Learning Mode)(In Progress)
 **Goal:** Learn enterprise firewall concepts safely without touching live network traffic.
 
-> **Architecture note:** Running as a VM in isolated learning mode — not acting as network gateway. Single NIC machine cannot function as a proper router without a USB NIC addition. This decision is intentional and can be revisited.
+> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.178.72 via Linux bridge (br0). USB NIC pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
 
-- [ ] Install pfSense or OPNsense in a KVM/QEMU VM
+- [x] Install KVM/QEMU/libvirt on Ubuntu Server
+- [x] Configure Linux bridge (br0) replacing macvtap
+- [x] Install OPNsense 25.1 in a KVM/QEMU VM
+- [x] Update WireGuard PostUp/PostDown rules for br0
+- [x] OPNsense accessible at 192.168.178.72 via WireGuard tunnel
 - [ ] Build firewall rule sets (allow/deny by port, protocol, IP range)
 - [ ] Configure NAT rules
 - [ ] Explore VLAN concepts and inter-VLAN routing logic
@@ -126,7 +132,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 **Security+ relevance:** Network security controls, stateful vs. stateless firewalls, DMZ architecture
 
-**Future path:** Add USB NIC → promote pfSense to actual network gateway
+**Future path:** Add Managed switch and USB NIC → promote pfSense to actual network gateway
 
 ---
 
@@ -268,9 +274,9 @@ Estimated idle RAM footprint for full stack:
 | Authentik | ~750MB |
 | Gitea | ~200MB |
 | Uptime Kuma | ~100MB |
-| pfSense VM | ~512MB |
-| **Total (conservative)** | **~3.7GB** |
-| **With headroom & spikes** | **~6-8GB** |
+| OPNsense VM | ~4GB (allocated) |
+| **Total (conservative)** | **~7GB** |
+| **With headroom & spikes** | **~10-12GB** |
 
 > **Conclusion:** 16GB handles the full stack comfortably. 32GB becomes relevant when adding multiple full VMs simultaneously.
 
