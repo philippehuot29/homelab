@@ -56,6 +56,12 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 ### ✅ Stage 1 — Linux Foundation
 **Goal:** Install Ubuntu Server 24.04 LTS, harden SSH, configure firewall, install Docker.
 
+**Skills developed:** Linux CLI fundamentals, SSH hardening, UFW firewall, static IP configuration, Docker engine
+
+**Network+ relevance:** host configuration, basic security
+
+**Security+ relevance:** hardening, least privilege
+
 - [x] Install Ubuntu Server 24.04 LTS on NVMe
 - [x] Configure static IP address
 - [x] Enable and harden SSH (key-based auth, disable root login, MaxAuthTries 3)
@@ -65,16 +71,16 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [x] Create homelab directory structure ~/homelab/{docker,scripts,configs,backups,docs}
 - [x] Take Timeshift snapshot: Stage 0 baseline
 
-**Skills developed:** Linux CLI fundamentals, SSH hardening, UFW firewall, static IP configuration, Docker engine
-
-**Network+ relevance:** host configuration, basic security
-
-**Security+ relevance:** hardening, least privilege
-
 ---
 
 ### ✅ Stage 2 — OpenDNS & Ad Blocking (Pi-hole)
 **Goal:** First live network service. Deploy Pi-hole in Docker as primary DNS resolver. Configure OpenDNS upstream. Network-wide ad blocking.
+
+**Skills developed:** Docker basics (volumes, port mapping, networking), DNS resolution flow, recursive vs authoritative resolvers, container lifecycle management
+
+**Network+ relevance:** DNS resolution flow, recursive resolvers
+
+**Security+ relevance:** DNS filtering, threat mitigation
 
 - [x] Disable systemd-resolved (port 53 conflict)
 - [x] Make /etc/resolv.conf immutable
@@ -87,17 +93,14 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [x] Verify ad blocking on all devices
 - [x] Take Timeshift snapshot: Stage 2 complete
 
-
-**Skills developed:** Docker basics (volumes, port mapping, networking), DNS resolution flow, recursive vs authoritative resolvers, container lifecycle management
-
-**Network+ relevance:** DNS resolution flow, recursive resolvers
-
-**Security+ relevance:** DNS filtering, threat mitigation
-
 ---
 
 ### ✅ Stage 3 — VPN Server (WireGuard)
 **Goal:** Self-hosted VPN accessible from anywhere. Eliminate reliance on commercial VPN providers.
+
+**Skills developed:** VPN fundamentals, asymmetric key cryptography, tunnel configuration, firewall rules, NAT traversal
+
+**Security+ relevance:** Tunneling protocols, IPSec vs. WireGuard vs. OpenVPN comparison, encryption key management
 
 - [x] Install WireGuard (kernel module — no Docker needed)
 - [x] Generate server and client key pairs
@@ -106,37 +109,80 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [x] Test connectivity from mobile and laptop externally
 - [x] Take Timeshift snapshot: Stage 3 complete
 
+---
 
-**Skills developed:** VPN fundamentals, asymmetric key cryptography, tunnel configuration, firewall rules, NAT traversal
+### 🔄 Stage 4 — GL-inet Beryl 7 Integration
+**Goal:** GL-inet Beryl 7 becomes the network layer between devices and ISP Router. DNS pointed to M710q Pi-hole.
 
-**Security+ relevance:** Tunneling protocols, IPSec vs. WireGuard vs. OpenVPN comparison, encryption key management
+**Skills developed:** Router gateway architecture, DNS forwarding, double NAT, VPN kill switch, repeater mode for mobile use
+
+**Network+ relevance:** Gateway configuration, NAT, DNS forwarding
+
+- [ ] Connect Beryl 7 WAN port to ISP Router LAN port
+- [ ] Set Beryl 7 DNS to M710q IP (192.168.178.64)
+- [ ] Verify all devices behind Beryl 7 use Pi-hole
+- [ ] Configure GL-inet SSID to generic name
+- [ ] Enable VPN kill switch in GL-inet admin
+- [ ] Test repeater mode (WiFi-as-WAN) at a café
 
 ---
 
-### 🔄 Stage 4 — Firewall Lab (pfSense/OPNsense — Learning Mode)(In Progress)
-**Goal:** Learn enterprise firewall concepts safely without touching live network traffic.
+### 🔜 Stage 5 — Exit Node (GL-inet Brume 3)
+**Goal:** Brume 3 at residential address running WireGuard server. GL-inet Beryl 7 tunnels through it. Residential IP when traveling.
 
-> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.178.72 via Linux bridge (br0). USB NIC pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
+**Skills developed:** WireGuard server config, DuckDNS dynamic DNS, port forwarding, GL-inet GoodCloud monitoring, VPN kill switch
+
+**Security+ relevance:** VPN architecture, remote access security, network privacy
+
+- [ ] Configure WireGuard server on Brume 3
+- [ ] Configure DuckDNS dynamic DNS on Brume 3
+- [ ] Set port forwarding on ISP router (UDP 51820 → Brume 3)
+- [ ] Configure Beryl 7 WireGuard client → Brume 3 tunnel
+- [ ] Enable kill switch on Beryl 7
+- [ ] Verify residential IP when traveling
+- [ ] Add both routers to GoodCloud for remote monitoring
+
+---
+
+### 🔄 Stage 6 — Firewall Lab (OPNsense VM)
+**Goal:** OPNsense 25.1 in KVM/QEMU VM. Build firewall rule sets, NAT, VLANs. Promote to full network gateway with USB NIC and managed switch.
+
+**Skills developed:** VM management (KVM/QEMU/libvirt), Linux bridge networking, firewall rule logic, NAT, VLAN theory, DMZ architecture
+
+**Security+ relevance:** Stateful vs stateless firewalls, DMZ, network segmentation, IDS/IPS integration
+
+> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.178.72 via Linux bridge (br0). USB NIC and managed switch pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
 
 - [x] Install KVM/QEMU/libvirt on Ubuntu Server
 - [x] Configure Linux bridge (br0) replacing macvtap
-- [x] Install OPNsense 25.1 in a KVM/QEMU VM
+- [x] Deploy OPNsense 25.1 VM (4GB RAM, 16GB disk, SATA/q35)
 - [x] Update WireGuard PostUp/PostDown rules for br0
 - [x] OPNsense accessible at 192.168.178.72 via WireGuard tunnel
-- [ ] Build firewall rule sets (allow/deny by port, protocol, IP range)
+- [ ] Install USB NIC and managed switch (TL-SG608E)
+- [ ] Build allow/deny firewall rule sets (port, protocol, IP range)
 - [ ] Configure NAT rules
-- [ ] Explore VLAN concepts and inter-VLAN routing logic
-- [ ] Study IDS/IPS integration options
-
-**Skills developed:** VM management, firewall rule logic, NAT, VLAN theory
-
-**Security+ relevance:** Network security controls, stateful vs. stateless firewalls, DMZ architecture
-
-**Future path:** Add Managed switch and USB NIC → promote pfSense to actual network gateway
+- [ ] Explore VLAN concepts and inter-VLAN routing
+- [ ] Document IDS/IPS integration options
 
 ---
 
-### 🔄 Stage 5 — Personal Cloud (Nextcloud)
+### 🔜 Stage 7 — Telecom & AI Lab (FreeSWITCH + SWAIG)
+**Goal:** FreeSWITCH PBX with SIP client. FastAPI + PostgreSQL SWAIG function lab. AI-driven call flows combining telecoms background with modern AI.
+
+**Skills developed:** SIP protocol, VoIP architecture, FastAPI, PostgreSQL, AI function calling, SignalWire SDK
+
+> Requires 16GB RAM (confirmed). Deploy after RAM stability confirmed under full load.
+
+- [ ] Deploy FreeSWITCH in Docker
+- [ ] Configure Zoiper SIP client on laptop for test calls
+- [ ] Build FastAPI SWAIG function endpoint
+- [ ] Connect PostgreSQL for call data persistence
+- [ ] Build AI-driven IVR demo using SignalWire AI Agent SDK
+- [ ] Document on GitHub with architecture diagram
+
+---
+
+### 🔄 Stage 8 — Personal Cloud (Nextcloud)
 **Goal:** Self-hosted cloud storage using 2TB USB HDD as backend.
 
 - [ ] Deploy Nextcloud in Docker
@@ -149,7 +195,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 6 — Web Hosting & Portfolio Site
+### 🔄 Stage 9 — Web Hosting & Portfolio Site
 **Goal:** Host a personal site or project documentation publicly. Reinforce professional presence.
 
 - [ ] Configure Nginx to serve static site
@@ -162,51 +208,155 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 7 — Monitoring & Observability
-**Goal:** Make the homelab feel like a real NOC environment.
+### 🔜 Stage 10 — Infrastructure as Code (Terraform + Ansible)
+**Goal:** Terraform for infrastructure provisioning. Ansible for configuration management. All configs version-controlled in Git.
 
-- [ ] Deploy Grafana + Prometheus for system and container metrics
-- [ ] Add Uptime Kuma for service availability monitoring
-- [ ] Configure alerting (email or Telegram notifications when services go down)
-- [ ] Build network traffic dashboard (Ntopng or Grafana + InfluxDB)
+**Skills developed:** IaC principles, Terraform HCL, Ansible playbooks, idempotent configuration, version-controlled infrastructure
 
-**Skills developed:** Metrics collection, dashboard design, alerting pipelines, time-series data
+**Career relevance:** Cloud Network Engineer, SRE, Platform Engineer
+
+- [ ] Create GitHub repo for homelab IaC
+- [ ] Write Terraform configs for all existing Docker services
+- [ ] Write Ansible playbook for M710q base configuration
+- [ ] Automate Timeshift snapshots via Ansible
+- [ ] Document IaC architecture in README
+
+---
+
+### 🔜 Stage 11 — CI/CD Pipeline (GitHub Actions)
+**Goal:** GitHub Actions pipeline for homelab service deployment. Automated testing of infrastructure changes.
+
+**Skills developed:** CI/CD concepts, YAML pipeline definition, automated testing, webhook triggers, deployment automation
+
+**Career relevance:** Directly differentiates from NetAdmin roles. Every DevOps/SRE role uses CI/CD.
+
+- [ ] Set up GitHub Actions workflow for Docker Compose deployment
+- [ ] Add linting/validation step for Terraform configs
+- [ ] Configure self-hosted GitHub Actions runner on M710q
+- [ ] Automate portfolio site deployment on git push
+- [ ] Add Telegram notification on pipeline success/failure
+
+---
+
+### 🔜 Stage 12 — Monitoring & Observability (Grafana Stack)
+**Goal:** Grafana + Prometheus for metrics. Uptime Kuma for availability. Loki for log aggregation. Telegram alerts on service failures.
+
+**Skills developed:** Metrics collection, dashboard design, alerting pipelines, time-series data, PromQL basics, log aggregation
+
+**Network+ relevance:** Network monitoring, SNMP
 
 **Telecoms relevance:** Directly mirrors NOC monitoring workflows
 
+- [ ] Deploy Grafana + Prometheus in Docker
+- [ ] Add Node Exporter for system metrics (CPU, RAM, disk)
+- [ ] Add cAdvisor for Docker container metrics
+- [ ] Deploy Uptime Kuma for service availability monitoring
+- [ ] Configure Telegram alerting (service down, high CPU)
+- [ ] Build network traffic dashboard (Ntopng or InfluxDB)
+- [ ] Add Loki for log aggregation (integrates with Grafana)
+
 ---
 
-### 🔄 Stage 8 — Intrusion Detection (Suricata)
-**Goal:** Network-based IDS inspecting live traffic. Security+ hands-on complement.
+### 🔜 Stage 13 — OpenClaw AI Agent Gateway
+**Goal:** OpenClaw in Docker, accessible via Telegram. Six-agent squad for job search automation and homelab monitoring.
 
-- [ ] Install Suricata on host (not Docker — needs raw interface access)
-- [ ] Configure rules and threat signatures
-- [ ] Pipe alerts into a log aggregator or Grafana
+**Skills developed:** Node.js service management, AI agent architecture, API integration, Docker isolation, agentic workflows
+
+**Cost:** ~$2–4 USD/month via Claude API
+
+| Agent | Role |
+|-------|------|
+| Scout | Job board intel & daily digest |
+| Tailor | Resume & cover letter generation |
+| Tracker | Application CRM + Gmail monitoring |
+| Coach | Interview prep & mock sessions |
+| Publisher | LinkedIn content scheduling |
+| Sentinel | Homelab & tunnel monitoring |
+
+- [ ] Deploy OpenClaw in isolated Docker container
+- [ ] Obtain Claude API key (console.anthropic.com)
+- [ ] Run OpenClaw onboard wizard — configure Telegram gateway
+- [ ] Deploy Sentinel agent (homelab + tunnel monitoring)
+- [ ] Deploy Scout agent (daily job board digest)
+- [ ] Deploy Tracker agent (application CRM + Gmail monitoring)
+- [ ] Deploy Tailor agent (resume + cover letter generation)
+- [ ] Deploy Coach agent (interview prep + mock sessions)
+- [ ] Deploy Publisher agent (LinkedIn content scheduling)
+
+---
+
+### 🔜 Stage 14 — Intrusion Detection (Suricata IDS)
+**Goal:** Suricata on host (not Docker — needs raw interface access). Rules tuned, alerts piped to Grafana.
+
+**Skills developed:** IDS/IPS configuration, signature-based detection, network traffic analysis, rule tuning, false positive reduction
+
+**Security+ relevance:** IDS vs IPS, signature vs anomaly detection, SIEM concepts
+
+- [ ] Install Suricata on host (apt install suricata)
+- [ ] Configure interface for live traffic inspection
+- [ ] Enable and update Emerging Threats rule set
+- [ ] Pipe Suricata alerts to Grafana via log aggregator
+- [ ] Build Grafana dashboard for IDS alerts
 - [ ] Tune rules to reduce false positives
-
-**Skills developed:** IDS/IPS configuration, signature-based detection, network traffic analysis
-
-**Security+ relevance:** IDS vs. IPS, signature vs. anomaly detection, SIEM concepts
+- [ ] Test detection with simulated attack from Kali VM
 
 ---
 
-### 🔄 Stage 9 — Vulnerability Lab (Ethical Hacking Practice)
-**Goal:** Legal, isolated environment to practice offensive security concepts from the defense side.
+### 🔜 Stage 15 — SOC Capabilities (Wazuh + ELK Stack)
+**Goal:** Wazuh SIEM + Elastic Stack for log aggregation. TheHive for incident response. MISP for threat intelligence.
 
-- [ ] Deploy DVWA (Damn Vulnerable Web Application) in isolated Docker network
-- [ ] Deploy Metasploitable VM in isolated network segment
-- [ ] Practice common attack vectors: SQL injection, XSS, privilege escalation
-- [ ] Document findings and remediations
+**Skills developed:** SIEM architecture, log correlation, threat hunting, incident response workflow, IOC management
 
-> ⚠️ All practice is conducted in isolated, self-owned lab environments. No external targets.
+**Security+ relevance:** SIEM, threat intelligence, incident response. Strong signal for SOC Analyst roles.
 
-**Skills developed:** Penetration testing methodology, OWASP Top 10, vulnerability assessment
+> RAM-intensive — deploy after confirming 16GB is sufficient under load. Consider 32GB upgrade if needed.
+
+- [ ] Deploy Wazuh manager + agent in Docker
+- [ ] Deploy Elasticsearch + Kibana (Elastic Stack)
+- [ ] Configure log ingestion from all homelab services
+- [ ] Deploy TheHive for incident response tracking
+- [ ] Deploy MISP for threat intelligence feeds
+- [ ] Build correlation rules: Pi-hole DNS + Suricata + Wazuh
+- [ ] Run a simulated incident and document response workflow
+---
+
+### 🔜 Stage 16 — Vulnerability Lab (DVWA + Metasploitable)
+**Goal:** DVWA and Metasploitable in isolated Docker networks. Practice attack vectors, document remediations in portfolio format.
+
+**Skills developed:** Penetration testing methodology, OWASP Top 10, SQL injection, XSS, privilege escalation, vulnerability assessment
 
 **Security+ relevance:** Attack types, vulnerability scanning, ethical hacking concepts
 
+> ⚠️ All practice conducted in isolated, self-owned lab environments. Never test external targets.
+
+- [ ] Deploy DVWA in isolated Docker network (no internet access)
+- [ ] Deploy Metasploitable VM in isolated network segment
+- [ ] Install OWASP ZAP and run against DVWA
+- [ ] Practice OWASP Top 10 attack categories
+- [ ] Run Nessus or OpenVAS scan against lab targets
+- [ ] Document each finding: attack vector, impact, remediation
+- [ ] Write lab report in portfolio format
+- [ ] Apply STRIDE threat modeling to one homelab service
+
 ---
 
-### 🔄 Stage 10 — Identity & Authentication (Authentik)
+### 🔜 Stage 17 — Cloud Security Integration (AWS)
+**Goal:** AWS integration with homelab. CloudTrail, GuardDuty, Security Hub. Terraform to provision cloud resources.
+
+**Skills developed:** AWS security services, hybrid cloud architecture, cloud monitoring, IAM, Terraform cloud provisioning
+
+**Cert link:** AWS Cloud Practitioner (held). Bridges to AWS Solutions Architect and Security Specialty.
+
+- [ ] Provision AWS resources via Terraform (VPC, EC2, S3)
+- [ ] Configure CloudTrail for audit logging
+- [ ] Enable GuardDuty for threat detection
+- [ ] Set up Security Hub for centralized findings
+- [ ] Build CloudWatch → Grafana metrics pipeline
+- [ ] Document hybrid homelab ↔ AWS architecture
+
+---
+
+### 🔄 Stage 18 — Identity & Authentication (Authentik)
 **Goal:** Self-hosted SSO and identity provider. Enterprise-grade auth concepts in the lab.
 
 - [ ] Deploy Authentik in Docker
@@ -220,7 +370,22 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 11 — Git Server & CI Automation (Gitea)
+### 🔜 Stage 19 — Container Orchestration (K3s + Helm)
+**Goal:** K3s lightweight Kubernetes on M710q. Helm charts for service deployment. ArgoCD for GitOps.
+
+**Skills developed:** Kubernetes architecture, pod/service/deployment concepts, Helm charts, GitOps with ArgoCD, K8s security
+
+**Career relevance:** Single most valuable DevOps/cloud skill. Opens Cloud Engineer, SRE, and Platform Engineer roles.
+
+- [ ] Install K3s on M710q
+- [ ] Deploy Pi-hole as a Kubernetes service (first migration)
+- [ ] Write Helm charts for core homelab services
+- [ ] Deploy ArgoCD for GitOps — Git push triggers K8s deployment
+- [ ] Configure Kubernetes RBAC and network policies
+- [ ] Deploy Falco for runtime security monitoring
+---
+
+### 🔄 Stage 20 — Git Server & CI Automation (Gitea)
 **Goal:** Self-hosted Git with webhook-driven automation.
 
 - [ ] Deploy Gitea in Docker
@@ -232,7 +397,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 12 — Home Automation (Home Assistant)
+### 🔄 Stage 21 — Home Automation (Home Assistant)
 **Goal:** IoT protocol exposure and API-driven automation.
 
 - [ ] Deploy Home Assistant in Docker
@@ -255,6 +420,9 @@ Organic automation tasks generated by the lab itself — more motivating than tu
 | `backup_nextcloud.sh` | Automated Nextcloud data backup to USB HDD on schedule |
 | `update_containers.py` | Pull latest images and recreate all containers with one command |
 | `ddns_updater.py` | Check public IP and update DuckDNS if changed |
+| `opnsense_backup.py` | Export OPNsense config via API and store versioned backup |
+| `wireguard_peer_monitor.py` | Check WireGuard peer last handshake, alert if tunnel drops |
+| `suricata_alert_parser.py` | Parse Suricata EVE JSON logs, push critical alerts to Telegram |
 
 ---
 
@@ -267,29 +435,21 @@ Estimated idle RAM footprint for full stack:
 | Ubuntu Server base | ~400MB |
 | Pi-hole (Docker) | ~75MB |
 | WireGuard | ~0MB (kernel) |
+| OPNsense VM | ~512MB (reduced from 4GB post-install) |
 | Nextcloud stack | ~700MB |
 | Nginx | ~75MB |
-| Grafana + Prometheus | ~500MB |
-| Suricata | ~400MB |
+| Grafana + Prometheus + Loki | ~600MB |
+| Uptime Kuma | ~100MB |
+| Suricata (host) | ~400MB |
+| Wazuh + ELK Stack | ~2GB |
 | Authentik | ~750MB |
 | Gitea | ~200MB |
-| Uptime Kuma | ~100MB |
-| OPNsense VM | ~4GB (allocated) |
+| FreeSWITCH + FastAPI | ~500MB |
+| K3s (lightweight Kubernetes) | ~500MB |
 | **Total (conservative)** | **~7GB** |
 | **With headroom & spikes** | **~10-12GB** |
 
-> **Conclusion:** 16GB handles the full stack comfortably. 32GB becomes relevant when adding multiple full VMs simultaneously.
-
----
-
-## Upgrade Path
-
-```
-Previously:  8GB RAM  |  128GB SATA SSD  |  No M.2    
-Step 1:  16GB RAM  |  128GB SATA SSD  |  No M.2        
-Step 2:  16GB RAM  |  128GB SATA SSD  |  256GB NVMe  
-Step 3:  32GB RAM  |  128GB SATA SSD  |  256GB NVMe     
-```
+> **Conclusion:** 16GB handles the full stack comfortably. 32GB becomes relevant when running Wazuh + ELK + multiple VMs simultaneously.
 
 ---
 
@@ -298,23 +458,28 @@ Step 3:  32GB RAM  |  128GB SATA SSD  |  256GB NVMe
 - **Linux:** Ubuntu Server proficiency, CLI fluency, scripting
 - **Networking:** Practical application of CompTIA Network+ concepts
 - **Security:** CompTIA Security+ hands-on complement (target: April 2026)
-- **Containers:** Docker, Docker Compose, container networking
-- **Automation:** Python scripting, bash, cron, webhooks
-- **Cloud:** Bridge to AWS Cloud Practitioner knowledge via self-hosted equivalents
+- **Containers:** Docker, Docker Compose, container networking, Kubernetes (K3s)
+- **Automation:** Python scripting, bash, cron, webhooks, GitHub Actions CI/CD
+- **Infrastructure as Code:** Terraform, Ansible, version-controlled infrastructure
+- **Cloud:** Hybrid homelab ↔ AWS architecture, CloudTrail, GuardDuty, Security Hub
+- **Monitoring:** Grafana, Prometheus, Loki, Uptime Kuma, NOC-style dashboards
+- **Security Operations:** Suricata IDS, Wazuh SIEM, TheHive, MISP threat intel
 
 ---
 
 ## Repository Structure (Planned)
-
 ```
 homelab/
-├── README.md                  # This file
+├── README.md                    # This file
 ├── docker/
 │   ├── pihole/
 │   ├── nextcloud/
 │   ├── grafana/
 │   ├── wireguard/
-│   └── authentik/
+│   ├── authentik/
+│   ├── gitea/
+│   ├── wazuh/
+│   └── freeswitch/
 ├── scripts/
 │   ├── backup/
 │   ├── monitoring/
@@ -322,13 +487,21 @@ homelab/
 ├── configs/
 │   ├── nginx/
 │   ├── ufw/
-│   └── wireguard/
+│   ├── wireguard/
+│   └── opnsense/
+├── terraform/
+│   ├── docker-services/
+│   └── aws/
+├── ansible/
+│   ├── m710q-base.yml
+│   └── services.yml
 └── docs/
-    ├── stage-1-setup.md
-    ├── stage-2-pihole.md
+    ├── stage-00-hardware.md
+    ├── stage-01-linux.md
+    ├── stage-02-pihole.md
     └── ...
 ```
 
 ---
 
-*Built and maintained by Philippe | Network & Security Professional | CompTIA Network+ | AWS Cloud Practitioner | Security+ (target April 2026)*
+*Built and maintained by Philippe | Network & Security Professional | CompTIA Network+ ✅ | AWS Cloud Practitioner ✅ | Security+ (target April 2026) 🔄*
