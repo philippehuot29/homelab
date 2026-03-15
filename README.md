@@ -127,7 +127,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔜 Stage 5 — Exit Node (GL-inet Brume 3)
+### 🔄 Stage 5 — Exit Node (GL-inet Brume 3)
 **Goal:** Brume 3 at residential address running WireGuard server. GL-inet Beryl 7 tunnels through it. Residential IP when traveling.
 
 **Skills developed:** WireGuard server config, DuckDNS dynamic DNS, port forwarding, GL-inet GoodCloud monitoring, VPN kill switch
@@ -182,7 +182,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 8 — Personal Cloud (Nextcloud)
+### 🔜 Stage 8 — Personal Cloud (Nextcloud)
 **Goal:** Self-hosted cloud storage using 2TB USB HDD as backend.
 
 - [ ] Deploy Nextcloud in Docker
@@ -195,7 +195,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 9 — Web Hosting & Portfolio Site
+### 🔜 Stage 9 — Web Hosting & Portfolio Site
 **Goal:** Host a personal site or project documentation publicly. Reinforce professional presence.
 
 - [ ] Configure Nginx to serve static site
@@ -356,7 +356,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 18 — Identity & Authentication (Authentik)
+### 🔜 Stage 18 — Identity & Authentication (Authentik)
 **Goal:** Self-hosted SSO and identity provider. Enterprise-grade auth concepts in the lab.
 
 - [ ] Deploy Authentik in Docker
@@ -385,7 +385,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [ ] Deploy Falco for runtime security monitoring
 ---
 
-### 🔄 Stage 20 — Git Server & CI Automation (Gitea)
+### 🔜 Stage 20 — Git Server & CI Automation (Gitea)
 **Goal:** Self-hosted Git with webhook-driven automation.
 
 - [ ] Deploy Gitea in Docker
@@ -397,7 +397,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 21 — Home Automation (Home Assistant)
+### 🔜 Stage 21 — Home Automation (Home Assistant)
 **Goal:** IoT protocol exposure and API-driven automation.
 
 - [ ] Deploy Home Assistant in Docker
