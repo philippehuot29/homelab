@@ -28,6 +28,7 @@
 ### Planned Hardware Upgrades
 - [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
 - [x] Storage: Add 256GB M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
+- [x] GL.iNet Beryl 7 Router
 - [ ] Managed switch Tp-Link TL-SG608E 8-Port Gigabit 
 - [ ] CPU: Upgrade to Intel i7-7700T
 - [ ] RAM: Upgrade to 2x 16GB (→ 32GB) when VM workloads demand it
