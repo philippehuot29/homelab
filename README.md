@@ -112,19 +112,19 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 4 — GL-inet Beryl 7 Integration
+### ✅ Stage 4 — GL-inet Beryl 7 Integration
 **Goal:** GL-inet Beryl 7 becomes the network layer between devices and ISP Router. DNS pointed to M710q Pi-hole.
 
 **Skills developed:** Router gateway architecture, DNS forwarding, double NAT, VPN kill switch, repeater mode for mobile use
 
 **Network+ relevance:** Gateway configuration, NAT, DNS forwarding
 
-- [ ] Connect Beryl 7 WAN port to ISP Router LAN port
-- [ ] Set Beryl 7 DNS to M710q IP (192.168.178.64)
-- [ ] Verify all devices behind Beryl 7 use Pi-hole
-- [ ] Configure GL-inet SSID to generic name
-- [ ] Enable VPN kill switch in GL-inet admin
-- [ ] Test repeater mode (WiFi-as-WAN) at a café
+- [x] Connect Beryl 7 WAN port to ISP Router LAN port
+- [x] Set Beryl 7 DNS to M710q IP (192.168.178.64)
+- [x] Verify all devices behind Beryl 7 use Pi-hole
+- [x] Configure GL-inet SSID to generic name
+- [x] Enable VPN kill switch in GL-inet admin
+- [x] Test repeater mode (WiFi-as-WAN) at a café
 
 ---
 
