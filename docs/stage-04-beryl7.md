@@ -79,8 +79,8 @@ Set Beryl 7 DNS server to M710q Pi-hole:
 - [x] Configure WireGuard client tunnel
 - [x] Enable VPN kill switch
 - [x] Configure SSID to generic name
-- [ ] Test repeater mode (WiFi-as-WAN) at a café
-- [ ] Add Beryl 7 to GoodCloud for remote monitoring
+- [x] Test repeater mode (WiFi-as-WAN) at a café
+- [x] Add Beryl 7 to GoodCloud for remote monitoring
 
 ---
 
