@@ -31,11 +31,10 @@ Hardware identification, DDR4 rank matching, NVMe compatibility, server form-fac
 | **SATA** | 128GB 2.5" SSD | 2.5" SSD/HDD via expansion chassis |
 
 ## Planned Upgrades
-- [ ] CPU: Upgrade to Intel i7-7700T (pending thermal paste + inspection)
-- [ ] RAM: Upgrade to 32GB when VM workloads demand it
 - [ ] Managed switch: TP-Link TL-SG608E 8-Port Gigabit (ordered)
 - [ ] USB 3.0 to Ethernet adapter: for WAN/LAN architecture
-
+- [ ] CPU: Upgrade to Intel i7-7700T (pending thermal paste + inspection)
+- [ ] RAM: Upgrade to 32GB when VM workloads demand it
 
 ---
 
