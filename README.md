@@ -436,7 +436,7 @@ Estimated idle RAM footprint for full stack:
 | Ubuntu Server base | ~400MB |
 | Pi-hole (Docker) | ~75MB |
 | WireGuard | ~0MB (kernel) |
-| OPNsense VM | ~512MB (reduced from 4GB post-install) |
+| OPNsense VM | ~1024MB (reduced from 4GB post-install) |
 | Nextcloud stack | ~700MB |
 | Nginx | ~75MB |
 | Grafana + Prometheus + Loki | ~600MB |
@@ -447,7 +447,7 @@ Estimated idle RAM footprint for full stack:
 | Gitea | ~200MB |
 | FreeSWITCH + FastAPI | ~500MB |
 | K3s (lightweight Kubernetes) | ~500MB |
-| **Total (conservative)** | **~7GB** |
+| **Total (conservative)** | **~8GB** |
 | **With headroom & spikes** | **~10-12GB** |
 
 > **Conclusion:** 16GB handles the full stack comfortably. 32GB becomes relevant when running Wazuh + ELK + multiple VMs simultaneously.
