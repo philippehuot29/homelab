@@ -29,7 +29,7 @@
 - [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
 - [x] Storage: Add 256GB M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
 - [x] GL.iNet Beryl 7 Router
-- [ ] Managed switch Tp-Link TL-SG608E 8-Port Gigabit 
+- [x] Managed switch Tp-Link TL-SG608E 8-Port Gigabit 
 - [ ] CPU: Upgrade to Intel i7-7700T
 - [ ] RAM: Upgrade to 2x 16GB (→ 32GB) when VM workloads demand it
 
@@ -158,7 +158,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [x] Configure Linux bridge (br0) replacing macvtap
 - [x] Deploy OPNsense 25.1 VM (4GB RAM, 16GB disk, SATA/q35)
 - [x] Update WireGuard PostUp/PostDown rules for br0
-- [x] OPNsense accessible at 192.168.178.72 via WireGuard tunnel
+- [x] OPNsense accessible at 192.168.8.246 via WireGuard tunnel
 - [ ] Install USB NIC and managed switch (TL-SG608E)
 - [ ] Build allow/deny firewall rule sets (port, protocol, IP range)
 - [ ] Configure NAT rules
