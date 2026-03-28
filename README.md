@@ -120,7 +120,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 **Network+ relevance:** Gateway configuration, NAT, DNS forwarding
 
 - [x] Connect Beryl 7 WAN port to ISP Router LAN port
-- [x] Set Beryl 7 DNS to M710q IP (192.168.178.64)
+- [x] Set Beryl 7 DNS to M710q IP (192.168.8.64)
 - [x] Verify all devices behind Beryl 7 use Pi-hole
 - [x] Configure GL-inet SSID to generic name
 - [x] Enable VPN kill switch in GL-inet admin
@@ -152,7 +152,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 **Security+ relevance:** Stateful vs stateless firewalls, DMZ, network segmentation, IDS/IPS integration
 
-> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.178.72 via Linux bridge (br0). USB NIC and managed switch pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
+> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.8.246 via Linux bridge (br0). USB NIC and managed switch pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
 
 - [x] Install KVM/QEMU/libvirt on Ubuntu Server
 - [x] Configure Linux bridge (br0) replacing macvtap
