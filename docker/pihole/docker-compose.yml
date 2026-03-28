@@ -22,7 +22,7 @@ services:
 #   docker compose down       # stop
 #   docker compose logs -f    # follow logs
 #
-# Web UI: http://192.168.178.64/admin
+# Web UI: http://192.168.8.64/admin
 # DNS: 192.168.178.64:53
 #
 # Pre-requisites:
