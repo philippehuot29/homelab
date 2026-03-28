@@ -13,7 +13,7 @@ Docker volumes and port mapping, DNS resolution flow, recursive vs authoritative
 
 ## Architecture
 ```
-Device → Router → Pi-hole (192.168.178.64:53) → OpenDNS (208.67.222.222) → Internet
+Device → Router → Pi-hole (192.168.8.64:53) → OpenDNS (208.67.222.222) → Internet
 ```
 
 Pi-hole runs in Docker using **host networking mode** — required because bridge networking causes port 53 conflicts with systemd-resolved and Docker's internal DNS.
@@ -80,7 +80,7 @@ docker compose up -d
 | OISD Gold Standard | Balanced blocklist — low false positives, high coverage |
 
 ### Router DNS
-Set router primary DNS to `192.168.178.64` so all network devices use Pi-hole automatically.
+Set router primary DNS to `192.168.8.64` so all network devices use Pi-hole automatically.
 
 ---
 
@@ -103,7 +103,7 @@ Set router primary DNS to `192.168.178.64` so all network devices use Pi-hole au
 sudo ss -tlnp | grep 53
 
 # Test DNS resolution through Pi-hole
-dig google.com @192.168.178.64
+dig google.com @192.168.8.64
 
 # Check container health
 docker ps | grep pihole
@@ -120,7 +120,7 @@ docker ps | grep pihole
 
 ## Lessons Learned
 - `chattr +i` on `/etc/resolv.conf` prevents Docker, systemd, and network managers from overwriting the DNS config on reboot
-- Pi-hole dashboard accessible at `http://192.168.178.64/admin` — useful for monitoring query logs and identifying blocked domains
+- Pi-hole dashboard accessible at `http://192.168.8.64/admin` — useful for monitoring query logs and identifying blocked domains
 - libvirt's built-in dnsmasq conflicts with Pi-hole on port 53 — disable libvirt's default network before deploying Pi-hole (relevant for Stage 6)
 
 ---
