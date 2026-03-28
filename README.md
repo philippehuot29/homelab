@@ -128,20 +128,20 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔄 Stage 5 — Exit Node (GL-inet Brume 3)
+### ✅ Stage 5 — Exit Node (GL-inet Brume 3)
 **Goal:** Brume 3 at residential address running WireGuard server. GL-inet Beryl 7 tunnels through it. Residential IP when traveling.
 
 **Skills developed:** WireGuard server config, DuckDNS dynamic DNS, port forwarding, GL-inet GoodCloud monitoring, VPN kill switch
 
 **Security+ relevance:** VPN architecture, remote access security, network privacy
 
-- [ ] Configure WireGuard server on Brume 3
-- [ ] Configure DuckDNS dynamic DNS on Brume 3
-- [ ] Set port forwarding on ISP router (UDP 51820 → Brume 3)
-- [ ] Configure Beryl 7 WireGuard client → Brume 3 tunnel
-- [ ] Enable kill switch on Beryl 7
-- [ ] Verify residential IP when traveling
-- [ ] Add both routers to GoodCloud for remote monitoring
+- [x] Configure WireGuard server on Brume 3
+- [x] Configure DuckDNS dynamic DNS on Brume 3
+- [x] Set port forwarding on ISP router (UDP 51820 → Brume 3)
+- [x] Configure Beryl 7 WireGuard client → Brume 3 tunnel
+- [x] Enable kill switch on Beryl 7
+- [x] Verify residential IP when traveling
+- [x] Add both routers to GoodCloud for remote monitoring
 
 ---
 
