@@ -17,7 +17,7 @@ Linux CLI fundamentals, SSH hardening, UFW firewall, static IP configuration, Do
 - **Install method:** USB bootable via Rufus
 - **Hostname:** `homelab`
 - **User:** `cyberphil`
-- **IP:** `192.168.178.64` (reserved on router)
+- **IP:** `192.168.8.64` (reserved on router)
 - **SSH:** Enabled during install
 
 ---
