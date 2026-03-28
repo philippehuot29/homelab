@@ -85,13 +85,13 @@ DNS = 10.0.0.1
 [Peer]
 PublicKey = [redacted]
 Endpoint = philippehuot29.duckdns.org:51820
-AllowedIPs = 10.0.0.0/24, 192.168.178.0/24
+AllowedIPs = 10.0.0.0/24, 192.168.8.0/24
 PersistentKeepalive = 25
 ```
 
 > **AllowedIPs explanation:**
 > - `10.0.0.0/24` — WireGuard tunnel subnet (reach homelab services)
-> - `192.168.178.0/24` — Home LAN subnet (reach OPNsense at .72, Pi-hole at .64)
+> - `192.168.8.0/24` — Home LAN subnet (reach OPNsense at .72, Pi-hole at .64)
 > - Omitting `0.0.0.0/0` means regular internet traffic goes direct — only homelab-bound traffic uses the tunnel
 
 ---
@@ -144,7 +144,7 @@ sudo wg show  # verify tunnel status
 - [x] Set `DEFAULT_FORWARD_POLICY=ACCEPT` in UFW
 - [x] Take Timeshift snapshot: Stage 3 complete
 - [x] Configure DuckDNS dynamic DNS (cron every 5 min)
-- [x] Set port forwarding on router (UDP 51820 → 192.168.178.64)
+- [x] Set port forwarding on router (UDP 51820 → 192.168.8.64)
 - [x] Test connectivity from external network
 - [x] Take Timeshift snapshot: Stage 3.1 complete
 - [ ] Test failover to secondary tunnel
