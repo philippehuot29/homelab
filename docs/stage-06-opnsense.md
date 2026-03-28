@@ -12,13 +12,13 @@ VM management (KVM/QEMU/libvirt), Linux bridge networking, firewall rule logic, 
 
 ## Architecture
 ```
-Internet → Upstream Router (192.168.178.1)
+Internet → Upstream Router (192.168.8.1)
                 ↓
          M710q Ubuntu Server
-         ├── br0 (Linux bridge — 192.168.178.64)
+         ├── br0 (Linux bridge — 192.168.8.64)
          │   ├── enp0s31f6 (physical NIC)
          │   └── vnet0 (OPNsense VM virtual NIC)
-         ├── OPNsense VM (192.168.178.72)
+         ├── OPNsense VM (192.168.8.246)
          │   └── WAN: vtnet0 via br0
          └── WireGuard (10.0.0.1)
 ```
@@ -82,10 +82,10 @@ network:
     br0:
       interfaces: [enp0s31f6]
       dhcp4: no
-      addresses: [192.168.178.64/24]
+      addresses: [192.168.8.64/24]
       routes:
         - to: default
-          via: 192.168.178.1
+          via: 192.168.8.1
       nameservers:
         addresses: [127.0.0.1, 208.67.222.222]
       parameters:
@@ -202,16 +202,16 @@ Console menu → Option 1 (Assign interfaces):
 Console menu → Option 2 (Set interface IP):
 - Interface: vtnet0
 - Configure via DHCP: Yes
-- IP assigned: `192.168.178.72`
+- IP assigned: `192.168.8.246`
 
 Reserve IP on router for OPNsense MAC address.
 
 ### Web UI Access
 ```
-https://192.168.178.72
+https://192.168.8.246
 ```
 
-Via WireGuard tunnel — requires `192.168.178.0/24` in client `AllowedIPs`.
+Via WireGuard tunnel — requires `192.168.8.0/24` in client `AllowedIPs`.
 
 Default credentials:
 - Username: `root`
@@ -252,9 +252,9 @@ sudo virsh setmem opnsense 1024 --config
 - [x] Complete OPNsense installer (UFS, halt method)
 - [x] Attach bridge interface post-install
 - [x] Assign WAN interface (vtnet0)
-- [x] OPNsense accessible at 192.168.178.72
+- [x] OPNsense accessible at 192.168.8.246
 - [x] OPNsense accessible via WireGuard tunnel
-- [x] Reserve 192.168.178.72 on router
+- [x] Reserve 192.168.8.246 on router
 - [x] Take Timeshift snapshot: Stage 6 complete
 - [ ] Install USB NIC (second NIC for WAN/LAN separation)
 - [ ] Install TP-Link TL-SG608E managed switch
@@ -281,8 +281,8 @@ macvtap mode isolates VM from host by design.
 **Fix:** Replace macvtap with Linux bridge (br0). Host can then reach VM via bridge.
 
 ### OPNsense not reachable via WireGuard
-WireGuard client `AllowedIPs` must include `192.168.178.0/24` to route LAN traffic through the tunnel.
-**Fix:** Update client config: `AllowedIPs = 10.0.0.0/24, 192.168.178.0/24`
+WireGuard client `AllowedIPs` must include `192.168.8.0/24` to route LAN traffic through the tunnel.
+**Fix:** Update client config: `AllowedIPs = 10.0.0.0/24, 192.168.8.0/24`
 
 ### WireGuard loses internet after bridge config
 WireGuard PostUp/PostDown referenced `enp0s31f6` which no longer has an IP after bridge setup.
