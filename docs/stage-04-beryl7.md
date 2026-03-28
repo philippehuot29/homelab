@@ -15,7 +15,7 @@ Router gateway architecture, DNS forwarding, double NAT, VPN kill switch, repeat
 Internet → Upstream Router
                 ↓
          GL-inet Beryl 7 (WAN port)
-         ├── DNS → M710q Pi-hole (192.168.178.64)
+         ├── DNS → M710q Pi-hole (192.168.8.64)
          ├── VPN kill switch enabled
          └── Devices (laptop, mobile, etc.)
 ```
@@ -48,7 +48,7 @@ Devices → Beryl 7 (WiFi or ethernet)
 ### 2. DNS Configuration
 Set Beryl 7 DNS server to M710q Pi-hole:
 - Admin UI → Network → DNS
-- Primary DNS: `192.168.178.64`
+- Primary DNS: `192.168.8.64`
 - All devices behind Beryl 7 automatically use Pi-hole
 
 ### 3. WireGuard Client → M710q
@@ -74,7 +74,7 @@ Set Beryl 7 DNS server to M710q Pi-hole:
 
 ## Checklist
 - [x] Connect Beryl 7 WAN port to upstream router LAN port
-- [x] Set Beryl 7 DNS to M710q Pi-hole (192.168.178.64)
+- [x] Set Beryl 7 DNS to M710q Pi-hole (192.168.8.64)
 - [x] Verify all devices behind Beryl 7 use Pi-hole
 - [x] Configure WireGuard client tunnel
 - [x] Enable VPN kill switch
@@ -88,7 +88,7 @@ Set Beryl 7 DNS server to M710q Pi-hole:
 ```bash
 # From a device behind Beryl 7
 # Check DNS is using Pi-hole
-nslookup google.com 192.168.178.64
+nslookup google.com 192.168.8.64
 
 # Check public IP is routing through tunnel
 curl ifconfig.me
