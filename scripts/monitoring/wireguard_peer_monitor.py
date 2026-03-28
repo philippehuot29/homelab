@@ -4,7 +4,7 @@ wireguard_peer_monitor.py
 Monitor WireGuard peer handshake times and alert via Telegram if a tunnel drops.
 
 Stage 3 — WireGuard VPN Server
-Host: M710q homelab (192.168.178.64)
+Host: M710q homelab (192.168.8.64)
 
 Usage:
     python3 wireguard_peer_monitor.py
