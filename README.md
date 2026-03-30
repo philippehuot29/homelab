@@ -11,35 +11,36 @@
 | **Machine** | Lenovo ThinkCentre M710q Tiny |
 | **CPU** | Intel i5-6500T — 4 cores/4 threads, 2.5GHz/3.1GHz (Based/Max Freq) , 6 MB cache, HD 530 Integrated Graphics |
 | **RAM** | 16GB (2x8GB) Samsung/Hynix DDR4-2400 SO-DIMM CL17 |
-| **Storage** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) + 128GB SATA SSD (data/storage) |
+| **Storage (OS)** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) |
+| **Storage (SSD)** | 128GB SATA SSD |
+| **Storage (Data)** | 2TB USB HDD (Nextcloud data) |
 | **Network** | 1x Intel I219-LM Gigabit LAN |
 | **Expansion** | Lenovo Tiny optical bay chassis (adds 1x additional 2.5" SATA bay) |
 | **Ports** | 6x USB 3.1, 1x COM DB-9, 2x DisplayPort, 1x LAN |
 | **Power** | Original Lenovo 65W adapter |
+| **Router** | GL.iNet Beryl 7 |
+| **Switch** | TP-Link TL-SG608E 8-Port Managed |
 
 ### Maximum Specs (Hardware Ceiling)
 - **RAM:** 32GB (2x 16GB DDR4 SO-DIMM) — DDR4-2400Mhz
-- **CPU:** i5-6500T — upgradeable to Core i7-7700T — 4 cores/8 threads, 2.9GHz/3.8GHz (Based/Max Freq) , 8 MB cache, HD 630 Integrated Graphics
+- **CPU:** upgradeable to Core i7-7700T — 4 cores/8 threads, 2.9GHz/3.8GHz (Based/Max Freq) , 8 MB cache, HD 630 Integrated Graphics
 - **Storage:**
     - M.2 NVMe Solid State Drive (SSD) / PCIe NVMe, PCIe 3.0 x 4, 32Gb/s
     - 2.5" Solid State Drive (SSD) / SATA 6.0Gb/s, 2.5"
     - 2.5" HDD via expansion chassis simultaneously
 
 ### Planned Hardware Upgrades
-- [x] RAM: Add 1x 8GB DDR4 SO-DIMM (→ 16GB dual-channel)
-- [x] Storage: Add 256GB M.2 NVMe SSD for OS, repurpose SATA SSD for VMs
-- [x] GL.iNet Beryl 7 Router
-- [x] Managed switch Tp-Link TL-SG608E 8-Port Gigabit 
 - [ ] CPU: Upgrade to Intel i7-7700T
 - [ ] RAM: Upgrade to 2x 16GB (→ 32GB) when VM workloads demand it
 
 ---
 
-## Operating System
+## Operating System / Hypervisor
 
-**Ubuntu Server 24.04 LTS** — installed headless via autoinstall (cloud-init)
-
-Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once CLI proficiency was established.
+**Proxmox VE 9.1** — installed bare metal on 250GB NVMe.
+Migrated from Ubuntu Server 24.04 LTS (March 2026) to gain 
+GUI-based VM/LXC management, native snapshot support, and 
+faster progression through the lab roadmap.
 
 ---
 
@@ -128,24 +129,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### ✅ Stage 5 — Exit Node (GL-inet Brume 3)
-**Goal:** Brume 3 at residential address running WireGuard server. GL-inet Beryl 7 tunnels through it. Residential IP when traveling.
-
-**Skills developed:** WireGuard server config, DuckDNS dynamic DNS, port forwarding, GL-inet GoodCloud monitoring, VPN kill switch
-
-**Security+ relevance:** VPN architecture, remote access security, network privacy
-
-- [x] Configure WireGuard server on Brume 3
-- [x] Configure DuckDNS dynamic DNS on Brume 3
-- [x] Set port forwarding on ISP router (UDP 51820 → Brume 3)
-- [x] Configure Beryl 7 WireGuard client → Brume 3 tunnel
-- [x] Enable kill switch on Beryl 7
-- [x] Verify residential IP when traveling
-- [x] Add both routers to GoodCloud for remote monitoring
-
----
-
-### 🔄 Stage 6 — Firewall Lab (OPNsense VM)
+### 🔄 Stage 5 — Firewall Lab (OPNsense VM)
 **Goal:** OPNsense 25.1 in KVM/QEMU VM. Build firewall rule sets, NAT, VLANs. Promote to full network gateway with USB NIC and managed switch.
 
 **Skills developed:** VM management (KVM/QEMU/libvirt), Linux bridge networking, firewall rule logic, NAT, VLAN theory, DMZ architecture
@@ -167,79 +151,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔜 Stage 7 — Telecom & AI Lab (FreeSWITCH + SWAIG)
-**Goal:** FreeSWITCH PBX with SIP client. FastAPI + PostgreSQL SWAIG function lab. AI-driven call flows combining telecoms background with modern AI.
-
-**Skills developed:** SIP protocol, VoIP architecture, FastAPI, PostgreSQL, AI function calling, SignalWire SDK
-
-> Requires 16GB RAM (confirmed). Deploy after RAM stability confirmed under full load.
-
-- [ ] Deploy FreeSWITCH in Docker
-- [ ] Configure Zoiper SIP client on laptop for test calls
-- [ ] Build FastAPI SWAIG function endpoint
-- [ ] Connect PostgreSQL for call data persistence
-- [ ] Build AI-driven IVR demo using SignalWire AI Agent SDK
-- [ ] Document on GitHub with architecture diagram
-
----
-
-### 🔜 Stage 8 — Personal Cloud (Nextcloud)
-**Goal:** Self-hosted cloud storage using 2TB USB HDD as backend.
-
-- [ ] Deploy Nextcloud in Docker
-- [ ] Mount 2TB USB HDD as persistent storage volume
-- [ ] Configure Nginx reverse proxy
-- [ ] Obtain HTTPS certificate via Let's Encrypt (Certbot or Nginx Proxy Manager)
-- [ ] Set up automated backup script (Python/bash) to secondary location
-
-**Skills developed:** Reverse proxying, SSL/TLS certificate management, Docker volumes, storage management
-
----
-
-### 🔜 Stage 9 — Web Hosting & Portfolio Site
-**Goal:** Host a personal site or project documentation publicly. Reinforce professional presence.
-
-- [ ] Configure Nginx to serve static site
-- [ ] Point a domain (or DuckDNS subdomain) at home IP
-- [ ] Set up dynamic DNS updater if ISP provides dynamic IP
-- [ ] Implement HTTPS with Let's Encrypt
-- [ ] Explore hosting a portfolio site or network-security-portfolio documentation site
-
-**Skills developed:** DNS management, web server configuration, SSL/TLS, dynamic DNS
-
----
-
-### 🔜 Stage 10 — Infrastructure as Code (Terraform + Ansible)
-**Goal:** Terraform for infrastructure provisioning. Ansible for configuration management. All configs version-controlled in Git.
-
-**Skills developed:** IaC principles, Terraform HCL, Ansible playbooks, idempotent configuration, version-controlled infrastructure
-
-**Career relevance:** Cloud Network Engineer, SRE, Platform Engineer
-
-- [ ] Create GitHub repo for homelab IaC
-- [ ] Write Terraform configs for all existing Docker services
-- [ ] Write Ansible playbook for M710q base configuration
-- [ ] Automate Timeshift snapshots via Ansible
-- [ ] Document IaC architecture in README
-
----
-
-### 🔜 Stage 11 — CI/CD Pipeline (GitHub Actions)
-**Goal:** GitHub Actions pipeline for homelab service deployment. Automated testing of infrastructure changes.
-
-**Skills developed:** CI/CD concepts, YAML pipeline definition, automated testing, webhook triggers, deployment automation
-
-**Career relevance:** Directly differentiates from NetAdmin roles. Every DevOps/SRE role uses CI/CD.
-
-- [ ] Set up GitHub Actions workflow for Docker Compose deployment
-- [ ] Add linting/validation step for Terraform configs
-- [ ] Configure self-hosted GitHub Actions runner on M710q
-- [ ] Automate portfolio site deployment on git push
-- [ ] Add Telegram notification on pipeline success/failure
-
----
-
-### 🔜 Stage 12 — Monitoring & Observability (Grafana Stack)
+### 🔜 Stage 6 — Monitoring & Observability (Grafana Stack)
 **Goal:** Grafana + Prometheus for metrics. Uptime Kuma for availability. Loki for log aggregation. Telegram alerts on service failures.
 
 **Skills developed:** Metrics collection, dashboard design, alerting pipelines, time-series data, PromQL basics, log aggregation
@@ -258,35 +170,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔜 Stage 13 — OpenClaw AI Agent Gateway
-**Goal:** OpenClaw in Docker, accessible via Telegram. Six-agent squad for job search automation and homelab monitoring.
-
-**Skills developed:** Node.js service management, AI agent architecture, API integration, Docker isolation, agentic workflows
-
-**Cost:** ~$2–4 USD/month via Claude API
-
-| Agent | Role |
-|-------|------|
-| Scout | Job board intel & daily digest |
-| Tailor | Resume & cover letter generation |
-| Tracker | Application CRM + Gmail monitoring |
-| Coach | Interview prep & mock sessions |
-| Publisher | LinkedIn content scheduling |
-| Sentinel | Homelab & tunnel monitoring |
-
-- [ ] Deploy OpenClaw in isolated Docker container
-- [ ] Obtain Claude API key (console.anthropic.com)
-- [ ] Run OpenClaw onboard wizard — configure Telegram gateway
-- [ ] Deploy Sentinel agent (homelab + tunnel monitoring)
-- [ ] Deploy Scout agent (daily job board digest)
-- [ ] Deploy Tracker agent (application CRM + Gmail monitoring)
-- [ ] Deploy Tailor agent (resume + cover letter generation)
-- [ ] Deploy Coach agent (interview prep + mock sessions)
-- [ ] Deploy Publisher agent (LinkedIn content scheduling)
-
----
-
-### 🔜 Stage 14 — Intrusion Detection (Suricata IDS)
+### 🔜 Stage 7 — Intrusion Detection (Suricata IDS)
 **Goal:** Suricata on host (not Docker — needs raw interface access). Rules tuned, alerts piped to Grafana.
 
 **Skills developed:** IDS/IPS configuration, signature-based detection, network traffic analysis, rule tuning, false positive reduction
@@ -303,7 +187,7 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔜 Stage 15 — SOC Capabilities (Wazuh + ELK Stack)
+### 🔜 Stage 8 — SOC Capabilities (Wazuh + ELK Stack)
 **Goal:** Wazuh SIEM + Elastic Stack for log aggregation. TheHive for incident response. MISP for threat intelligence.
 
 **Skills developed:** SIEM architecture, log correlation, threat hunting, incident response workflow, IOC management
@@ -319,6 +203,104 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 - [ ] Deploy MISP for threat intelligence feeds
 - [ ] Build correlation rules: Pi-hole DNS + Suricata + Wazuh
 - [ ] Run a simulated incident and document response workflow
+
+---
+
+### 🔜 Stage 9 — Identity & Authentication (Authentik)
+**Goal:** Self-hosted SSO and identity provider. Enterprise-grade auth concepts in the lab.
+
+- [ ] Deploy Authentik in Docker
+- [ ] Configure OAuth2 / OpenID Connect for lab services
+- [ ] Integrate with Nextcloud and Grafana for single sign-on
+- [ ] Explore LDAP and SAML integration options
+
+**Skills developed:** IAM concepts, OAuth2/OIDC flows, SSO architecture
+
+**Security+ relevance:** Authentication protocols, identity federation, MFA
+
+---
+
+### 🔜 Stage 10 — Personal Cloud (Nextcloud)
+**Goal:** Self-hosted cloud storage using 2TB USB HDD as backend.
+
+- [ ] Deploy Nextcloud in Docker
+- [ ] Mount 2TB USB HDD as persistent storage volume
+- [ ] Configure Nginx reverse proxy
+- [ ] Obtain HTTPS certificate via Let's Encrypt (Certbot or Nginx Proxy Manager)
+- [ ] Set up automated backup script (Python/bash) to secondary location
+
+**Skills developed:** Reverse proxying, SSL/TLS certificate management, Docker volumes, storage management
+
+---
+
+### 🔜 Stage 11 — Web Hosting & Portfolio Site
+**Goal:** Host a personal site or project documentation publicly. Reinforce professional presence.
+
+- [ ] Configure Nginx to serve static site
+- [ ] Point a domain (or DuckDNS subdomain) at home IP
+- [ ] Set up dynamic DNS updater if ISP provides dynamic IP
+- [ ] Implement HTTPS with Let's Encrypt
+- [ ] Explore hosting a portfolio site or network-security-portfolio documentation site
+
+**Skills developed:** DNS management, web server configuration, SSL/TLS, dynamic DNS
+
+---
+
+### 🔜 Stage 12 — Infrastructure as Code (Terraform + Ansible)
+**Goal:** Terraform for infrastructure provisioning. Ansible for configuration management. All configs version-controlled in Git.
+
+**Skills developed:** IaC principles, Terraform HCL, Ansible playbooks, idempotent configuration, version-controlled infrastructure
+
+**Career relevance:** Cloud Network Engineer, SRE, Platform Engineer
+
+- [ ] Create GitHub repo for homelab IaC
+- [ ] Write Terraform configs for all existing Docker services
+- [ ] Write Ansible playbook for M710q base configuration
+- [ ] Automate Timeshift snapshots via Ansible
+- [ ] Document IaC architecture in README
+
+---
+
+### 🔜 Stage 13 — CI/CD Pipeline (GitHub Actions)
+**Goal:** GitHub Actions pipeline for homelab service deployment. Automated testing of infrastructure changes.
+
+**Skills developed:** CI/CD concepts, YAML pipeline definition, automated testing, webhook triggers, deployment automation
+
+**Career relevance:** Directly differentiates from NetAdmin roles. Every DevOps/SRE role uses CI/CD.
+
+- [ ] Set up GitHub Actions workflow for Docker Compose deployment
+- [ ] Add linting/validation step for Terraform configs
+- [ ] Configure self-hosted GitHub Actions runner on M710q
+- [ ] Automate portfolio site deployment on git push
+- [ ] Add Telegram notification on pipeline success/failure
+
+---
+
+### 🔜 Stage 14 — Container Orchestration (K3s + Helm)
+**Goal:** K3s lightweight Kubernetes on M710q. Helm charts for service deployment. ArgoCD for GitOps.
+
+**Skills developed:** Kubernetes architecture, pod/service/deployment concepts, Helm charts, GitOps with ArgoCD, K8s security
+
+**Career relevance:** Single most valuable DevOps/cloud skill. Opens Cloud Engineer, SRE, and Platform Engineer roles.
+
+- [ ] Install K3s on M710q
+- [ ] Deploy Pi-hole as a Kubernetes service (first migration)
+- [ ] Write Helm charts for core homelab services
+- [ ] Deploy ArgoCD for GitOps — Git push triggers K8s deployment
+- [ ] Configure Kubernetes RBAC and network policies
+- [ ] Deploy Falco for runtime security monitoring
+---
+
+### 🔜 Stage 15 — Git Server & CI Automation (Gitea)
+**Goal:** Self-hosted Git with webhook-driven automation.
+
+- [ ] Deploy Gitea in Docker
+- [ ] Mirror network-security-portfolio repository locally
+- [ ] Configure webhooks for automated actions
+- [ ] Write Python automation scripts triggered by commits
+
+**Skills developed:** Git internals, webhook pipelines, SSH key management, Python automation
+
 ---
 
 ### 🔜 Stage 16 — Vulnerability Lab (DVWA + Metasploitable)
@@ -357,48 +339,52 @@ Initial setup used Ubuntu Desktop for learning comfort, migrated to Server once 
 
 ---
 
-### 🔜 Stage 18 — Identity & Authentication (Authentik)
-**Goal:** Self-hosted SSO and identity provider. Enterprise-grade auth concepts in the lab.
 
-- [ ] Deploy Authentik in Docker
-- [ ] Configure OAuth2 / OpenID Connect for lab services
-- [ ] Integrate with Nextcloud and Grafana for single sign-on
-- [ ] Explore LDAP and SAML integration options
+### 🔜 Stage 18 — Telecom & AI Lab (FreeSWITCH + SWAIG)
+**Goal:** FreeSWITCH PBX with SIP client. FastAPI + PostgreSQL SWAIG function lab. AI-driven call flows combining telecoms background with modern AI.
 
-**Skills developed:** IAM concepts, OAuth2/OIDC flows, SSO architecture
+**Skills developed:** SIP protocol, VoIP architecture, FastAPI, PostgreSQL, AI function calling, SignalWire SDK
 
-**Security+ relevance:** Authentication protocols, identity federation, MFA
+> Requires 16GB RAM (confirmed). Deploy after RAM stability confirmed under full load.
 
----
-
-### 🔜 Stage 19 — Container Orchestration (K3s + Helm)
-**Goal:** K3s lightweight Kubernetes on M710q. Helm charts for service deployment. ArgoCD for GitOps.
-
-**Skills developed:** Kubernetes architecture, pod/service/deployment concepts, Helm charts, GitOps with ArgoCD, K8s security
-
-**Career relevance:** Single most valuable DevOps/cloud skill. Opens Cloud Engineer, SRE, and Platform Engineer roles.
-
-- [ ] Install K3s on M710q
-- [ ] Deploy Pi-hole as a Kubernetes service (first migration)
-- [ ] Write Helm charts for core homelab services
-- [ ] Deploy ArgoCD for GitOps — Git push triggers K8s deployment
-- [ ] Configure Kubernetes RBAC and network policies
-- [ ] Deploy Falco for runtime security monitoring
----
-
-### 🔜 Stage 20 — Git Server & CI Automation (Gitea)
-**Goal:** Self-hosted Git with webhook-driven automation.
-
-- [ ] Deploy Gitea in Docker
-- [ ] Mirror network-security-portfolio repository locally
-- [ ] Configure webhooks for automated actions
-- [ ] Write Python automation scripts triggered by commits
-
-**Skills developed:** Git internals, webhook pipelines, SSH key management, Python automation
+- [ ] Deploy FreeSWITCH in Docker
+- [ ] Configure Zoiper SIP client on laptop for test calls
+- [ ] Build FastAPI SWAIG function endpoint
+- [ ] Connect PostgreSQL for call data persistence
+- [ ] Build AI-driven IVR demo using SignalWire AI Agent SDK
+- [ ] Document on GitHub with architecture diagram
 
 ---
 
-### 🔜 Stage 21 — Home Automation (Home Assistant)
+### 🔜 Stage 19 — OpenClaw AI Agent Gateway
+**Goal:** OpenClaw in Docker, accessible via Telegram. Six-agent squad for job search automation and homelab monitoring.
+
+**Skills developed:** Node.js service management, AI agent architecture, API integration, Docker isolation, agentic workflows
+
+**Cost:** ~$2–4 USD/month via Claude API
+
+| Agent | Role |
+|-------|------|
+| Scout | Job board intel & daily digest |
+| Tailor | Resume & cover letter generation |
+| Tracker | Application CRM + Gmail monitoring |
+| Coach | Interview prep & mock sessions |
+| Publisher | LinkedIn content scheduling |
+| Sentinel | Homelab & tunnel monitoring |
+
+- [ ] Deploy OpenClaw in isolated Docker container
+- [ ] Obtain Claude API key (console.anthropic.com)
+- [ ] Run OpenClaw onboard wizard — configure Telegram gateway
+- [ ] Deploy Sentinel agent (homelab + tunnel monitoring)
+- [ ] Deploy Scout agent (daily job board digest)
+- [ ] Deploy Tracker agent (application CRM + Gmail monitoring)
+- [ ] Deploy Tailor agent (resume + cover letter generation)
+- [ ] Deploy Coach agent (interview prep + mock sessions)
+- [ ] Deploy Publisher agent (LinkedIn content scheduling)
+
+---
+
+### 🔜 Stage 20 — Home Automation (Home Assistant)
 **Goal:** IoT protocol exposure and API-driven automation.
 
 - [ ] Deploy Home Assistant in Docker
@@ -433,7 +419,7 @@ Estimated idle RAM footprint for full stack:
 
 | Service | Idle RAM |
 |---------|----------|
-| Ubuntu Server base | ~400MB |
+| Proxmox VE host overhead | ~500MB |
 | Pi-hole (Docker) | ~75MB |
 | WireGuard | ~0MB (kernel) |
 | OPNsense VM | ~1024MB (reduced from 4GB post-install) |
