@@ -130,13 +130,11 @@ faster progression through the lab roadmap.
 ---
 
 ### ✅ Stage 5 — Firewall Lab (OPNsense VM)
-**Goal:** OPNsense 25.1 in KVM/QEMU VM. Build firewall rule sets, NAT, VLANs. Promote to full network gateway with USB NIC and managed switch.
+**Goal:** OPNsense 25.1 in VM. Build firewall rule sets, NAT, VLANs. Promote to full network gateway with USB NIC and managed switch.
 
 **Skills developed:** VM management (KVM/QEMU/libvirt), Linux bridge networking, firewall rule logic, NAT, VLAN theory, DMZ architecture
 
 **Security+ relevance:** Stateful vs stateless firewalls, DMZ, network segmentation, IDS/IPS integration
-
-> **Architecture note:** OPNsense running as a KVM/QEMU VM, accessible at 192.168.8.246 via Linux bridge (br0). USB NIC and managed switch pending arrival to enable proper WAN/LAN separation and promote OPNsense to full network gateway.
 
 - [x] Install KVM/QEMU/libvirt on Ubuntu Server
 - [x] Configure Linux bridge (br0) replacing macvtap
