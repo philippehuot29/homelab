@@ -442,19 +442,19 @@ Estimated idle RAM footprint for full stack:
 | Proxmox VE host overhead | ~500MB |
 | Pi-hole (Docker) | ~75MB |
 | WireGuard | ~0MB (kernel) |
-| OPNsense VM | ~1024MB (reduced from 4GB post-install) |
-| Nextcloud stack | ~700MB |
-| Nginx | ~75MB |
+| OPNsense VM | ~2048MB |
 | Grafana + Prometheus + Loki | ~600MB |
 | Uptime Kuma | ~100MB |
 | Suricata (host) | ~400MB |
 | Wazuh + ELK Stack | ~2GB |
 | Authentik | ~750MB |
+| Nextcloud stack | ~700MB |
+| Nginx | ~75MB |
 | Gitea | ~200MB |
 | FreeSWITCH + FastAPI | ~500MB |
 | K3s (lightweight Kubernetes) | ~500MB |
 | **Total (conservative)** | **~8GB** |
-| **With headroom & spikes** | **~10-12GB** |
+| **With headroom & spikes** | **~11-13GB** |
 
 > **Conclusion:** 16GB handles the full stack comfortably. 32GB becomes relevant when running Wazuh + ELK + multiple VMs simultaneously.
 
