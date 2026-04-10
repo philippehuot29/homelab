@@ -149,7 +149,7 @@ faster progression through the lab roadmap.
 
 ---
 
-### 🔄 Stage 6 — Monitoring & Observability (Full Stack)
+### ✅ Stage 6 — Monitoring & Observability (Full Stack)
 **Goal:** Build a layered NOC-grade monitoring stack — availability monitoring with 
 Nagios Core, metrics collection with Prometheus and Grafana, log aggregation and 
 SIEM-lite with Splunk Free, lightweight log pipeline with Loki, and unified 
@@ -168,7 +168,7 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 - [ ] Configure check_command definitions for Pi-hole, WireGuard, OPNsense
 - [x] Add HTTP service checks per container/VM
 - [x] Deploy Uptime Kuma — visual availability dashboard and status page
-- [ ] Configure Telegram alerting for host-down and service-down events (Nagios) (Telegram is on Uptime Kuma only, not wired into Nagios yet)
+- [x] Configure Telegram alerting for host-down and service-down events (Nagios) (Telegram is on Uptime Kuma only, not wired into Nagios yet)
 
 #### Layer 2 — Metrics (how is it performing?)
 - [x] Deploy Prometheus in Docker
