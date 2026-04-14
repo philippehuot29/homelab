@@ -165,25 +165,25 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 
 #### Layer 1 — Availability (is it up?)
 - [x] Deploy Nagios Core — monitor all Proxmox hosts, LXCs, and VMs
-- [ ] Configure check_command definitions for Pi-hole, WireGuard, OPNsense
+- [x] Configure check_command definitions for Pi-hole, WireGuard, OPNsense
 - [x] Add HTTP service checks per container/VM
 - [x] Deploy Uptime Kuma — visual availability dashboard and status page
-- [x] Configure Telegram alerting for host-down and service-down events (Nagios) (Telegram is on Uptime Kuma only, not wired into Nagios yet)
+- [x] Configure Telegram alerting for host-down and service-down events (Nagios & Uptime Kuma)
 
 #### Layer 2 — Metrics (how is it performing?)
 - [x] Deploy Prometheus in Docker
 - [x] Add Node Exporter for system metrics (CPU, RAM, disk)
-- [ ] Add cAdvisor for Docker/LXC container metrics
 - [x] Deploy Grafana — connect to Prometheus as data source
 - [x] Build unified system metrics dashboard
 - [x] Configure Telegram alerting (high CPU, memory pressure)
+- [ ] Add cAdvisor for Docker/LXC container metrics (Proxmox already gives LXC metrics via Node Exporter)
 - [ ] Build network traffic dashboard (Ntopng or InfluxDB)
 
 #### Layer 3 — Logs (what happened?)
 - [x] Deploy Splunk Free — ingest Pi-hole DNS logs and Ubuntu/Proxmox syslog
 - [x] Write SPL queries: event volume baseline, error surfacing, DNS query trends
 - [x] Build Splunk NOC overview dashboard (3 panels minimum)
-- [ ] Configure Splunk threshold alert with Telegram webhook
+- [x] Configure Splunk threshold alert with Telegram webhook
 - [x] Deploy Loki + Alloy — lightweight log pipeline feeding into Grafana (Promtail is discontinued)
 - [x] Connect Loki to Grafana as second data source
 - [x] Build unified Grafana dashboard pulling Prometheus metrics + Loki logs side by side
