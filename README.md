@@ -176,8 +176,7 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 - [x] Deploy Grafana — connect to Prometheus as data source
 - [x] Build unified system metrics dashboard
 - [x] Configure Telegram alerting (high CPU, memory pressure)
-- [ ] Add cAdvisor for Docker/LXC container metrics (Proxmox already gives LXC metrics via Node Exporter)
-- [ ] Build network traffic dashboard (Ntopng or InfluxDB)
+- [x] Add cAdvisor for Docker/LXC container metrics 
 
 #### Layer 3 — Logs (what happened?)
 - [x] Deploy Splunk Free — ingest Pi-hole DNS logs and Ubuntu/Proxmox syslog
