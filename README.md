@@ -189,6 +189,44 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 
 ---
 
+### ✅ Mini-Stage 6.5 — CD Ripping & Music Library (abcde + Navidrome)
+**Goal:** Preserve physical CD collection as FLAC. Stream music to any device via WireGuard tunnel. Extend WireGuard to iPhone for full homelab remote access.
+
+**Skills developed:** Privileged vs unprivileged LXC, device passthrough (optical drive, SG_IO ioctl), WireGuard peer management, split-tunnel routing, NAT/masquerade across tunnel hops, IP forwarding, multi-hop packet tracing with tcpdump
+
+**Network+ relevance:** Routing, NAT, tunneling, split tunnel vs full tunnel
+
+**Security+ relevance:** VPN architecture, split tunneling, least-exposure access design
+
+#### CD Ripper (CT 106)
+- [x] Deploy privileged LXC 106 (ripper) at 192.168.8.106
+- [x] Pass through Lenovo DVD chassis (/dev/sr0, major:minor 11:0) via lxc.cgroup2 and lxc.mount.entry
+- [x] Pass through SCSI generic device (/dev/sg1, 21:1) for SG_IO support
+- [x] Convert to privileged LXC to allow ioctl access
+- [x] Install abcde + flac + cdparanoia
+- [x] Configure ~/.abcde.conf — FLAC output, cdparanoia error correction, MusicBrainz lookup, /mnt/music output
+- [x] Mount /mnt/ssd/music into CT 106 at /mnt/music (ssd-storage pool)
+- [x] First rip: Plein Sud — La Tribu Hérisson feat. Khaled Ben Yahia (arabo-andalusian jazz, 2000s)
+- [x] Second rip: Billy Talent II (MusicBrainz auto-tagged)
+
+#### iPhone WireGuard Peer
+- [x] Add iPhone XR as peer 10.2.0.4 on DO VPS wg0
+- [x] Enable ip_forward on CT 103 (wg-vps)
+- [x] Add iptables MASQUERADE on CT 103 eth0
+- [x] Add 192.168.8.0/24 to CT 103 peer AllowedIPs on VPS — key fix enabling homelab subnet routing
+- [x] Remove redundant manual ip route add from PostUp (now auto-handled by WireGuard AllowedIPs)
+- [x] iPhone split tunnel confirmed working: 10.2.0.0/24 + 192.168.8.0/24 via WireGuard, DNS via Pi-hole
+
+#### Navidrome Music Server (CT 107)
+- [ ] Deploy LXC 107 (navidrome) at 192.168.8.107
+- [ ] Install Navidrome via Docker Compose
+- [ ] Mount /mnt/ssd/music as music library source
+- [ ] Access via WireGuard only (no public exposure)
+- [ ] Configure Subsonic-compatible iPhone app (Substreamer or Amperfy)
+- [ ] Verify streaming from external network via WireGuard tunnel
+
+---
+
 ### 🔄 Stage 7 — Intrusion Detection (Suricata IDS)
 **Goal:** Suricata on host (not Docker — needs raw interface access). Rules tuned, alerts piped to Grafana.
 
