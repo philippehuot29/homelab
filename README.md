@@ -206,8 +206,7 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 - [x] Install abcde + flac + cdparanoia
 - [x] Configure ~/.abcde.conf — FLAC output, cdparanoia error correction, MusicBrainz lookup, /mnt/music output
 - [x] Mount /mnt/ssd/music into CT 106 at /mnt/music (ssd-storage pool)
-- [x] First rip: Plein Sud — La Tribu Hérisson feat. Khaled Ben Yahia (arabo-andalusian jazz, 2000s)
-- [x] Second rip: Billy Talent II (MusicBrainz auto-tagged)
+- [x] Rip CD collection
 
 #### iPhone WireGuard Peer
 - [x] Add iPhone XR as peer 10.2.0.4 on DO VPS wg0
@@ -218,12 +217,12 @@ Telecoms relevance: Directly mirrors NOC monitoring workflows
 - [x] iPhone split tunnel confirmed working: 10.2.0.0/24 + 192.168.8.0/24 via WireGuard, DNS via Pi-hole
 
 #### Navidrome Music Server (CT 107)
-- [ ] Deploy LXC 107 (navidrome) at 192.168.8.107
-- [ ] Install Navidrome via Docker Compose
-- [ ] Mount /mnt/ssd/music as music library source
-- [ ] Access via WireGuard only (no public exposure)
-- [ ] Configure Subsonic-compatible iPhone app (Substreamer or Amperfy)
-- [ ] Verify streaming from external network via WireGuard tunnel
+- [x] Deploy LXC 107 (navidrome) at 192.168.8.107
+- [x] Install Navidrome via Docker Compose
+- [x] Mount /mnt/ssd/music as music library source
+- [x] Access via WireGuard only (no public exposure)
+- [x] Configure Subsonic-compatible iPhone app (Substreamer or Amperfy)
+- [x] Verify streaming from external network via WireGuard tunnel
 
 ---
 
