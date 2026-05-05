@@ -211,7 +211,7 @@ dashboard design, NMS workflows, SIEM fundamentals
 
 #### iPhone WireGuard Peer
 - [x] Add iPhone XR as peer 10.2.0.4 on DO VPS wg0 
-- [ ] [x] Add laptop as WireGuard peer 10.2.0.5 on DO VPS wg0 
+- [x] Add laptop as WireGuard peer 10.2.0.5 on DO VPS wg0 
 - [x] Enable ip_forward on CT 103 (wg-vps)
 - [x] Add iptables MASQUERADE on CT 103 eth0
 - [x] Add 192.168.8.0/24 to CT 103 peer AllowedIPs on VPS — key fix enabling homelab subnet routing
