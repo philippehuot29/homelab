@@ -14,6 +14,7 @@
 | **Storage (OS)** | 250GB NVMe M.2 (Samsung 970 EVO Plus, OS) |
 | **Storage (SSD)** | 120GB SATA SSD |
 | **Storage (Data)** | 2TB USB HDD (Nextcloud data) |
+| **Storage (Data)** | 750GB USB HDD (usb-backup) |
 | **Network** | 1x Intel I219-LM Gigabit LAN |
 | **Expansion** | Lenovo Tiny optical bay chassis (adds 1x additional 2.5" SATA bay) |
 | **Ports** | 6x USB 3.1, 1x COM DB-9, 2x DisplayPort, 1x LAN |
