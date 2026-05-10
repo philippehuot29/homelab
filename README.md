@@ -229,20 +229,20 @@ dashboard design, NMS workflows, SIEM fundamentals
 
 ---
 
-### 🔄 Stage 7 — Intrusion Detection (Suricata IDS)
+### ✅ Stage 7 — Intrusion Detection (Suricata IDS)
 **Goal:** Suricata on host (not Docker — needs raw interface access). Rules tuned, alerts piped to Grafana.
 
 **Skills developed:** IDS/IPS configuration, signature-based detection, network traffic analysis, rule tuning, false positive reduction
 
 **Security+ relevance:** IDS vs IPS, signature vs anomaly detection, SIEM concepts
 
-- [ ] Install Suricata on host (apt install suricata)
-- [ ] Configure interface for live traffic inspection
-- [ ] Enable and update Emerging Threats rule set
-- [ ] Pipe Suricata alerts to Grafana via log aggregator
-- [ ] Build Grafana dashboard for IDS alerts
-- [ ] Tune rules to reduce false positives
-- [ ] Test detection with simulated attack from Kali VM
+- [x] Install Suricata on host (apt install suricata)
+- [x] Configure interface for live traffic inspection
+- [x] Enable and update Emerging Threats rule set
+- [x] Pipe Suricata alerts to Grafana via log aggregator
+- [x] Build Grafana dashboard for IDS alerts
+- [x] Tune rules to reduce false positives
+- [x] Test detection with simulated attack (nmap scan against homelab)
 
 ---
 
