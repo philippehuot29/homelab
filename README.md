@@ -250,7 +250,7 @@ dashboard design, NMS workflows, SIEM fundamentals
 
 **Security+ relevance:** SIEM, threat intelligence, incident response, vulnerability management. Direct signal for SOC Analyst and NOC roles.
 
-> TheHive and MISP deferred — Wazuh's built-in OpenSearch stack covers. 
+> TheHive and MISP deferred — Wazuh's built-in OpenSearch stack covers 
 > log aggregation. ELK redundant given Wazuh 4.x architecture.
 
 - [x] Deploy Wazuh manager + indexer + dashboard (Docker Compose, CT 108)
