@@ -152,10 +152,7 @@ faster progression through the lab roadmap.
 ---
 
 ### ✅ Stage 6 — Monitoring & Observability (Full Stack)
-**Goal:** Build a layered NOC-grade monitoring stack — availability monitoring with 
-Nagios Core, metrics collection with Prometheus and Grafana, log aggregation and 
-SIEM-lite with Splunk Free, lightweight log pipeline with Loki, and unified 
-Telegram alerting across all layers.
+**Goal:** Build a layered NOC-grade monitoring stack — availability monitoring with Nagios Core, metrics collection with Prometheus and Grafana, log aggregation and SIEM-lite with Splunk Free, lightweight log pipeline with Loki, and unified Telegram alerting across all layers.
 
 **Skills developed:** Host/service availability monitoring, metrics collection, 
 time-series data, PromQL basics, SPL queries, log aggregation, alerting pipelines, 
@@ -246,21 +243,29 @@ dashboard design, NMS workflows, SIEM fundamentals
 
 ---
 
-### ✅ Stage 8 — SOC Capabilities (Wazuh + ELK Stack)
-**Goal:** Wazuh SIEM + Elastic Stack for log aggregation. TheHive for incident response. MISP for threat intelligence.
+### ✅ Stage 8 — SOC Capabilities (Wazuh SIEM)
+**Goal:** Deploy Wazuh SIEM with full agent coverage across the homelab. Vulnerability detection, file integrity monitoring, MITRE ATT&CK mapping, and Telegram alerting. Log ingestion from Suricata and Pi-hole for cross-source correlation.
 
-**Skills developed:** SIEM architecture, log correlation, threat hunting, incident response workflow, IOC management
+**Skills developed:** SIEM architecture, agent deployment, vulnerability triage, CVE analysis, false positive identification, MITRE ATT&CK framework, FIM, rule tuning, custom integration scripting, log correlation.
 
-**Security+ relevance:** SIEM, threat intelligence, incident response. Strong signal for SOC Analyst roles.
+**Security+ relevance:** SIEM, threat intelligence, incident response, vulnerability management. Direct signal for SOC Analyst and NOC roles.
+
+> TheHive and MISP deferred — Wazuh's built-in OpenSearch stack covers. 
+> log aggregation. ELK redundant given Wazuh 4.x architecture.
 
 - [x] Deploy Wazuh manager + indexer + dashboard (Docker Compose, CT 108)
-- [x] Deploy Wazuh agent on Proxmox host
+- [x] Deploy Wazuh agent on Proxmox host (pve)
 - [x] Deploy Wazuh agent on CT 101 (pihole)
 - [x] Deploy Wazuh agent on CT 103 (wireguard)
-- [x] Triage vulnerability findings (CVE analysis, false positive identification)
-- [x] Verify MITRE ATT&CK mapping in dashboard
-- [x] File Integrity Monitoring active on /etc/pve/
-- [x] Telegram alerting via custom integration script
+- [x] Vulnerability detection — triaged 4 Critical CVEs, identified false positives
+- [x] MITRE ATT&CK mapping active (Impact, Defense Evasion techniques detected)
+- [x] File Integrity Monitoring on /etc/pve/ — live config change detection
+- [x] Telegram alerting via custom Python integration script (level 7+)
+- [x] Rule tuning — suppressed rootcheck baseline noise (local_rules.xml)
+- [ ] Suricata eve.json → Wazuh log ingestion
+- [ ] Pi-hole DNS logs → Wazuh log ingestion
+- [ ] Correlation rule: Pi-hole blocked domain + Suricata alert on same IP
+- [ ] Simulated incident walkthrough — nmap scan triage, end-to-end response
 
 ---
 
