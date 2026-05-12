@@ -246,22 +246,21 @@ dashboard design, NMS workflows, SIEM fundamentals
 
 ---
 
-### 🔜 Stage 8 — SOC Capabilities (Wazuh + ELK Stack)
+### ✅ Stage 8 — SOC Capabilities (Wazuh + ELK Stack)
 **Goal:** Wazuh SIEM + Elastic Stack for log aggregation. TheHive for incident response. MISP for threat intelligence.
 
 **Skills developed:** SIEM architecture, log correlation, threat hunting, incident response workflow, IOC management
 
 **Security+ relevance:** SIEM, threat intelligence, incident response. Strong signal for SOC Analyst roles.
 
-> RAM-intensive — deploy after confirming 16GB is sufficient under load. Consider 32GB upgrade if needed.
-
-- [ ] Deploy Wazuh manager + agent in Docker
-- [ ] Deploy Elasticsearch + Kibana (Elastic Stack)
-- [ ] Configure log ingestion from all homelab services
-- [ ] Deploy TheHive for incident response tracking
-- [ ] Deploy MISP for threat intelligence feeds
-- [ ] Build correlation rules: Pi-hole DNS + Suricata + Wazuh
-- [ ] Run a simulated incident and document response workflow
+- [x] Deploy Wazuh manager + indexer + dashboard (Docker Compose, CT 108)
+- [x] Deploy Wazuh agent on Proxmox host
+- [x] Deploy Wazuh agent on CT 101 (pihole)
+- [x] Deploy Wazuh agent on CT 103 (wireguard)
+- [x] Triage vulnerability findings (CVE analysis, false positive identification)
+- [x] Verify MITRE ATT&CK mapping in dashboard
+- [x] File Integrity Monitoring active on /etc/pve/
+- [x] Telegram alerting via custom integration script
 
 ---
 
